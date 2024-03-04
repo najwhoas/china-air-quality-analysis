@@ -67,7 +67,8 @@ st.subheader('Bagaimana proporsi polutan Sulfur Dioksida, Nitrogen Dioksida, dan
 
 gucheng_df = pd.read_csv("https://github.com/marceloreis/HTI/raw/master/PRSA_Data_20130301-20170228/PRSA_Data_Gucheng_20130301-20170228.csv")
 
-gucheng_df.fillna(method='ffill', inplace=True)
+gucheng_df.fillna(method='ffill', numeric_only=True, inplace=True)
+
 Q1 = gucheng_df.quantile(0.25)
 Q3 = gucheng_df.quantile(0.75)
 IQR = Q3 - Q1
