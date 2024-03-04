@@ -75,12 +75,13 @@ maximum = Q3 + (1.5 * IQR)
 minimum = Q1 - (1.5 * IQR)
 kondisi_lower_than = gucheng_df < minimum
 kondisi_more_than = gucheng_df > maximum
-dongsi_df = gucheng_df.mask(cond=kondisi_more_than, other=maximum, axis=1)
-dongsi_df = gucheng_df.mask(cond=kondisi_lower_than, other=minimum, axis=1)
-dongsi_df.info()
+gucheng_df = gucheng_df.mask(cond=kondisi_more_than, other=maximum)
+gucheng_df = gucheng_df.mask(cond=kondisi_lower_than, other=minimum)
+gucheng_df.info()
 
 mean = gucheng_df[gucheng_df['year'] == 2017][['PM2.5','PM10','SO2', 'NO2', 'CO']].mean()
 total = mean.sum()
+
 
 fig, ax = plt.subplots()
 ax.pie(mean/total, autopct='%0.1f%%', colors=['#F39233','#EEF296','#EF4F4F','#9ADE7B','#2D9596'], startangle=140)
