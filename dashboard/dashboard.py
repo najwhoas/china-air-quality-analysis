@@ -75,10 +75,14 @@ Q3 = numeric_df.quantile(0.75, axis=0)
 IQR = Q3 - Q1
 maximum = Q3 + (1.5 * IQR)
 minimum = Q1 - (1.5 * IQR)
+
 kondisi_lower_than = numeric_df < minimum
 kondisi_more_than = numeric_df > maximum
-gucheng_df = gucheng_df.mask(cond=kondisi_more_than, other=maximum)
-gucheng_df = gucheng_df.mask(cond=kondisi_lower_than, other=minimum)
+
+numeric_df = numeric_df.mask(cond=kondisi_more_than, other=maximum)
+numeric_df = numeric_df.mask(cond=kondisi_lower_than, other=minimum)
+gucheng_df[numeric_df.columns] = numeric_df
+
 gucheng_df.info()
 
 mean = gucheng_df[gucheng_df['year'] == 2017][['PM2.5','PM10','SO2', 'NO2', 'CO']].mean()
