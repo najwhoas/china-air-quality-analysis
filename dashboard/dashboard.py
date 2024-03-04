@@ -14,7 +14,7 @@ st.header('Proyek Analisis Data: Air Quality Analysis')
 - **ID Dicoding:** najwasalsabila"""
 
 
-df = pd.read_csv('china-air-quality-analysis/dashboard/all_data.csv')
+df = pd.read_csv('all_data.csv')
 
 st.subheader('DataFrame Overview')
 df_desc = df.describe().transpose()
