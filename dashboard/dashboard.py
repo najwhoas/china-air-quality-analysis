@@ -68,20 +68,18 @@ st.subheader('Bagaimana proporsi polutan Sulfur Dioksida, Nitrogen Dioksida, dan
 gucheng_df = pd.read_csv("https://github.com/marceloreis/HTI/raw/master/PRSA_Data_20130301-20170228/PRSA_Data_Gucheng_20130301-20170228.csv")
 
 gucheng_df.fillna(method='ffill', inplace=True)
-numeric_df = gucheng_df.select_dtypes(include='number')
-
-Q1 = numeric_df.quantile(0.25, axis=0)
-Q3 = numeric_df.quantile(0.75, axis=0)
+Q1 = gucheng_df.quantile(0.25, axis=0)
+Q3 = gucheng_df.quantile(0.75, axis=0)
 IQR = Q3 - Q1
 maximum = Q3 + (1.5 * IQR)
 minimum = Q1 - (1.5 * IQR)
 
-kondisi_lower_than = numeric_df < minimum
-kondisi_more_than = numeric_df > maximum
+kondisi_lower_than = gucheng_df < minimum
+kondisi_more_than = gucheng_df > maximum
 
-numeric_df = numeric_df.mask(cond=kondisi_more_than, other=maximum)
-numeric_df = numeric_df.mask(cond=kondisi_lower_than, other=minimum)
-gucheng_df[numeric_df.columns] = numeric_df
+gucheng_df = gucheng_df.mask(cond=kondisi_more_than, other=maximum)
+gucheng_df = gucheng_df.mask(cond=kondisi_lower_than, other=minimum)
+
 
 gucheng_df.info()
 
