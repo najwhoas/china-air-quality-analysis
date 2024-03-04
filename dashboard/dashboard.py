@@ -27,10 +27,7 @@ st.write(" ")
 
 st.subheader('Polutan apa saja yang berhubungan dengan jumlah penyebaran Partikulat 2.5?')
 plt.figure(figsize=(20,7))
-df.dropna(inplace=True)
-df = df.astype(float)
-df.drop_duplicates(inplace=True)
-sns.heatmap(df.corr(), vmin=-1, vmax=1, center=0, cmap='YlGnBu', annot=True)
+sns.heatmap(df.corr(numeric_only=True), vmin=-1, vmax=1, center=0, cmap='YlGnBu', annot=True)
 st.pyplot(plt)
 st.write('Polutan paling signifikan hubungannya dengan Partikulat 2.5 adalah Partikulat 10, lalu disusul dengan Karbon Monoksida, Nitrogen Dioksida, Sulfur Dioksida, dan titik embun.')
 
