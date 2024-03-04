@@ -70,8 +70,8 @@ gucheng_df = pd.read_csv("https://github.com/marceloreis/HTI/raw/master/PRSA_Dat
 gucheng_df.fillna(method='ffill', inplace=True)
 numeric_df = gucheng_df.select_dtypes(include='number')
 
-Q1 = numeric_df.quantile(0.25)
-Q3 = numeric_df.quantile(0.75)
+Q1 = numeric_df.quantile(0.25, axis=0)
+Q3 = numeric_df.quantile(0.75, axis=0)
 IQR = Q3 - Q1
 maximum = Q3 + (1.5 * IQR)
 minimum = Q1 - (1.5 * IQR)
