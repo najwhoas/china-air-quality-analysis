@@ -15,9 +15,7 @@ st.header('Proyek Analisis Data: Air Quality Analysis')
 - **ID Dicoding:** najwasalsabila"""
 
 
-path = os.path.dirname(__file__)
-my_file = path+'/dashboard/photo.png'
-df = pd.read_csv(file_path)
+df = pd.read_csv('https://raw.githubusercontent.com/najwhoas/china-air-quality-analysis/main/dashboard/all_data.csv')
 
 
 st.subheader('DataFrame Overview')
