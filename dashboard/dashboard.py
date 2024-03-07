@@ -68,7 +68,7 @@ df_desc = all_df.describe().transpose()
 tab1.write(df_desc)
 
 tab2.subheader('Columns Correlation &mdash;')
-fig = px.imshow(all_df.corr(), color_continuous_scale='YlGnBu')
+fig = px.imshow(all_df.corr(numeric_only=True), color_continuous_scale='YlGnBu')
 tab2.plotly_chart(fig)
 tab2.write('The most significant pollutant correlated with Particulate 2.5 is Particulate 10, followed by Carbon Monoxide, Nitrogen Dioxide, Sulfur Dioxide, and dew point.')
 
